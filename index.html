@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Cherlyn!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/howler@2.2.3/dist/howler.min.js"></script> <!-- For sound effects -->
+</head>
+<body>
+    <header>
+        <h1>Happy Birthday, Cherlyn!</h1>
+    </header>
+
+    <section class="lights-container">
+        <div class="light" id="light1"></div>
+        <div class="light" id="light2"></div>
+        <div class="light" id="light3"></div>
+        <div class="light" id="light4"></div>
+    </section>
+
+    <section class="message-container">
+        <div class="message" id="message">
+            May your day be full of adventure, mystery, and waffles!
+        </div>
+    </section>
+
+    <section class="game-container">
+        <button id="startGame" class="game-btn">Start Birthday Game!</button>
+        <div id="gameMessage" class="game-message"></div>
+    </section>
+
+    <footer>
+        <img src="https://media.giphy.com/media/3o7TKAqWhxLRpbvts0/giphy.gif" alt="Eggo Waffle" id="eggo">
+        <p>Thanks for being a part of our *Stranger Things* crew!</p>
+    </footer>
+
+    <script>
+        // Sound Effects (using Howler.js)
+        const birthdaySong = new Howl({
+            src: ['https://www.soundjay.com/button/beep-07.wav'],
+            volume: 0.5,
+            loop: true,
+        });
+
+        // Event listeners for clicking lights
+        document.getElementById('light1').onclick = function() {
+            showMessage("You just unlocked a message! Happy Birthday Cherlyn!");
+            playSound();
+        };
+        document.getElementById('light2').onclick = function() {
+            showMessage("You're a star in Hawkins! Enjoy your special day!");
+            playSound();
+        };
+        document.getElementById('light3').onclick = function() {
+            showMessage("Waffles and adventure await! Stay awesome!");
+            playSound();
+        };
+        document.getElementById('light4').onclick = function() {
+            showMessage("The Upside Down can't stop you today! Happy Birthday!");
+            playSound();
+        };
+
+        // Show message function
+        function showMessage(message) {
+            const messageElement = document.getElementById('message');
+            messageElement.textContent = message;
+            messageElement.classList.add('visible');
+        }
+
+        // Play sound effect
+        function playSound() {
+            birthdaySong.play();
+        }
+
+        // Game functionality: Hide the birthday message and start a mini game
+        document.getElementById('startGame').addEventListener('click', function() {
+            startBirthdayGame();
+        });
+
+        function startBirthdayGame() {
+            document.getElementById('gameMessage').textContent = "Find the hidden Eggo waffles to unlock your surprise!";
+            setTimeout(function() {
+                document.getElementById('gameMessage').textContent = "Congratulations! You've completed the game! 🎉";
+                // After a while, you can reset it to make the game play again
+                setTimeout(() => {
+                    document.getElementById('gameMessage').textContent = "";
+                }, 3000);
+            }, 5000);
+        }
+
+    </script>
+</body>
+</html>
